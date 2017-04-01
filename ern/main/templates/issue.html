@@ -1,0 +1,19 @@
+{% for x in issue %}
+{{x.id}}<br>
+{{x.house_id}}
+<form action="" method="POST">
+{% csrf_token %}
+{{x.Detail}}
+	<input type="test" style="display:none" name="house_id" id="house_id" value={{x.house_id}}>
+	{% if x.status == 1 %}
+	<input type="submit" value="created" style="background-color:yellow;" >
+	{% endif %}
+	{% if x.status == 2 %}
+	<input type="submit" value="In progress" style="background-color:orange;">
+	{% endif %}
+	{% if x.status >= 3 %}
+	<input type="button" value="resolved" style="cursor:text;color:white;background-color:#00FF00;" > 
+	{% endif %}
+</form>
+{{x.timestamp}}
+{% endfor %}
