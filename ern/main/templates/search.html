@@ -20,19 +20,34 @@
 			  </div>
 			</nav>
 			<ul class="nav nav-pills">
-			  <li role="presentation" class="active"><a href="/issue">Issues</a></li>
+			  <li role="presentation" ><a href="/issue">Issues</a></li>
 			  <li role="presentation"><a href="/hospitals">Hospitals</a></li>
-			  <li role="presentation"><a href="/search">Search By ERN_ID</a></li>
+			  <li role="presentation" class="active"><a href="/search">Search By ERN_ID</a></li>
 			</ul>
-
+			<div>&nbsp</div>
+			<div>&nbsp</div>
 
 			<div>&nbsp</div>
-			<div class="jumbotron">
-				  <h1>Total Issues {{X}}</h1>
-				  <p>{{Y}} number of issues are resolved,{{Q}} number of issues are not noticed and {{Z}}number of issues are in progress right now.</p>
-				  <p><a class="btn btn-primary btn-lg" href="/issuelist" role="button">See All</a></p>
+
+			<div class="col-md-offset-3">
+			<div  >
+				
+				<form class="form-inline" action="" method="POST">
+				{% csrf_token %}
+				  <div class="form-group">
+				    <label for="house_id">House Id</label>
+				    <input type="text" class="form-control" id="house_id" name="h_id" placeholder="">
+				  </div>
+				  <button type="submit" class="btn btn-default">Find</button>
+				</form>
 			</div>
 
+			
+		</div>
+
+
+			<br>
+			{% if issue %}
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -51,7 +66,7 @@
 						<td class="text-right">
 							<form action="" method="POST">
 								{% csrf_token %}
-									<input type="test" style="display:none" name="issue_id" id="issue_id" value={{x.id}}>
+									<input type="test" style="display:none" name="house_id" id="house_id" value={{x.house_id}}>
 									{% if x.status == 1 %}
 									<input type="submit" class="btn btn-primary" value="created" style="background-color:yellow;" >
 									{% endif %}
@@ -72,6 +87,7 @@
 
 
 			</table>
+			{% endif %}
 			
 		</div>
 	</body>

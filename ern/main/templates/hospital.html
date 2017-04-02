@@ -1,34 +1,138 @@
-<form action="" method="post">
-{% csrf_token %}
-	House id :<input type="text" name="h_id" id="h_id" >
-	Scope :<input type="text" name="spec" id="spec">
-	<input type="submit" value="submit">
-</form>
+<html>
+	<head>
+		<title>
+			MAIN PAGE
+		</title>
 
-{% if hospitals %}
-<table>
-<tr>
-	<td>Doctor Name</td>
-	<td>Mob </td>
-	<td>Availablity from</td>
-	<td> to </td>
-	<td>Hospital ID</td>
-	<td>Name</td>
-	<td>Contact</td>
-	<td>distance</td>
-	<td>Address</td>
-</tr>
-{% for x in hospitals %}
-<tr>
-	<td>{{x.5}}</td>
-	<td>{{x.8}}</td>
-	<td>{{x.6}}</td>
-	<td>{{x.7}}</td>
-	<td>{{x.0}}</td>
-	<td>{{x.1}}</td>
-	<td>{{x.3}}</td>
-	<td>{{x.2}}</td>
-	<td>{{x.4}}</td>
-</tr>
-{% endfor %}
-{% endif %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>
+			.ftr{
+				background-color: #4682B4;
+			}
+			.hitin{
+				background-color: #E6E6FA;
+			}
+
+
+		</style>
+	</head>
+	<body>
+		
+		<div class="container">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <a  href="#">
+			     
+			        <h1>ERN</h1>
+			      </a>
+			    </div>
+			  </div>
+			</nav>
+			<ul class="nav nav-pills">
+			  <li role="presentation" ><a href="/issue">Issues</a></li>
+			  <li role="presentation" class="active"><a href="/hospitals">Hospitals</a></li>
+			  <li role="presentation"><a href="/search">Search By ERN_ID</a></li>
+			</ul>
+			<br>
+
+
+			<div>&nbsp</div>
+			<div>&nbsp</div>
+
+			<div>&nbsp</div>
+			
+			<!--  start of formm                       -->
+			
+			<div class="col-md-offset-3">
+			<div  >
+				
+				<form class="form-inline" action="" method="POST">
+				{% csrf_token %}
+				  <div class="form-group">
+				    <label for="house_id">House Id</label>
+				    <input type="text" class="form-control" id="house_id" name="h_id" placeholder="">
+				  </div>
+				  <div class="form-group">
+				    <label for="specification">Scope</label>
+				    <input type="text" class="form-control" id="specification" placeholder="" name="spec">
+				  </div>
+				  <button type="submit" class="btn btn-default">Find</button>
+				</form>
+			</div>
+
+			
+		</div>
+
+		
+		
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		
+
+		<!--  start of card   -->
+		{% if hospitals %}
+		{% for x in hospitals %}
+		<div class="container hitin">
+			<div class="row">
+				
+				<div class="col-md-3 col-md-offset-4">
+
+
+						<div class="card">
+						  <div class="card-block">
+						    	<h4 class="card-title">{{x.5}}</h4>
+    							<h6 class="card-subtitle mb-2 text-muted">{{x.9}},{{x.6}} to {{x.7}}</h6>
+    							<h6 class="card-subtitle mb-2 text-muted">{{x.8}}</h6>
+						  </div>
+						</div>
+					
+				</div>
+				<div class="col-md-3">
+
+
+						<div class="card">
+						  <div class="card-block">
+						    		<h4 class="card-title">{{x.2}} km</h4>
+    								<h5 class="card-subtitle mb-2 text-muted">{{x.1}}</h5>
+    								<h6 class="card-subtitle mb-2 text-muted">{{x.4}}</h6>
+						  </div>
+						</div>
+					
+				</div>
+				
+			</div>
+
+		</div>
+        {% endfor %}
+		{% else %}
+		<div class="alert alert-danger" role="alert">Please search your query first.</div>
+
+		{% endif %}
+		
+
+
+		<!--   -->
+
+
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		<div>&nbsp</div>
+		
+		
+		
+		
+
+		<div class="ftr container-fluid" style="bottom-margin:0px;" >
+			<em><p>non profit limited</p></em>
+		</div>
+	</body>
+</html>
